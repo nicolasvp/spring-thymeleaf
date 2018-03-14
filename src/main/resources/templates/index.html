@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<link rel="icon" type="image/png" sizes="16x16"
+	th:href="@{plugins/images/favicon.png}" />
+<title>Spring Boot + Thymeleaf</title>
+<!-- Bootstrap Core CSS -->
+<link th:href="@{/bootstrap/dist/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<link
+	th:href="@{/plugins/bower_components/bootstrap-extension/css/bootstrap-extension.css}"
+	rel="stylesheet" />
+<!-- Menu CSS -->
+<link
+	th:href="@{/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css}"
+	rel="stylesheet" />
+<!-- animation CSS -->
+<link th:href="@{/css/animate.css}" rel="stylesheet" />
+<!-- Custom CSS -->
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<!-- color CSS you can use different color css from css/colors folder -->
+<link th:href="@{/css/colors/blue.css}" id="theme" rel="stylesheet" />
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+<script src="http://www.w3schools.com/lib/w3data.js"></script>
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Top Navigation -->
+		<nav class="navbar navbar-default navbar-static-top m-b-0">
+			<div class="navbar-header">
+				<a class="navbar-toggle hidden-sm hidden-md hidden-lg "
+					href="#" data-toggle="collapse"
+					data-target=".navbar-collapse" ><i class="ti-menu"></i></a>
+				<div class="top-left-part">
+					<a class="logo" href="#" th:href="@{#}">
+						<img th:src="@{/plugins/images/eliteadmin-logo.png}" alt="home" />
+						<span class="hidden-xs">
+							<img th:src="@{/plugins/images/eliteadmin-text.png}" alt="home" />
+						</span>
+					</a>
+				</div>
+				<ul class="nav navbar-top-links navbar-right pull-right">
+					<li class="dropdown">
+						<a class="dropdown-toggle waves-effect waves-light"
+							data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
+						 </a>
+					</li>
+					<!-- /.dropdown -->
+					<li class="dropdown">
+						<a class="dropdown-toggle waves-effect waves-light"
+							data-toggle="dropdown" href="#"><i class="icon-note"></i>
+						</a>
+					</li>
+					<!-- /.dropdown -->
+					<li class="dropdown"><a class="dropdown-toggle profile-pic"
+						data-toggle="dropdown" href="#"> <img
+							src="../plugins/images/users/varun.jpg" alt="user-img" width="36"
+							class="img-circle" /><b class="hidden-xs">Nicolás</b>
+					</a>
+						<ul class="dropdown-menu dropdown-user animated flipInY">
+							<li><a href="#"><i class="ti-user"></i> Mi Perfil</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"><i class="ti-settings"></i> Configuración de cuenta</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+						</ul> <!-- /.dropdown-user --></li>
+				</ul>
+			</div>
+			<!-- /.navbar-header -->
+			<!-- /.navbar-top-links -->
+			<!-- /.navbar-static-side -->
+		</nav>
+		<!-- End Top Navigation -->
+		<!-- Left navbar-header -->
+		<div class="navbar-default sidebar" role="navigation">
+			<div class="sidebar-nav navbar-collapse">
+				<ul class="nav" id="side-menu">
+				</ul>
+			</div>
+		</div>
+		<!-- Left navbar-header end -->
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Inicio</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a href="#">Dashboard</a></li>
+							<li class="active">Inicio</li>
+						</ol>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="white-box">
+							<h3 class="box-title">Página en blanco</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer class="footer text-center"> 2017 &copy; Spring boot</footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<!-- jQuery -->
+	<script th:src="@{/plugins/bower_components/jquery/dist/jquery.min.js}"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/bootstrap/dist/js/tether.min.js}"></script>
+	<script th:src="@{/bootstrap/dist/js/bootstrap.min.js}"></script>
+	<script
+		th:src="@{/plugins/bower_components/bootstrap-extension/js/bootstrap-extension.min.js}"></script>
+	<!-- Menu Plugin JavaScript -->
+	<script
+		th:src="@{/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js}"></script>
+	<!--slimscroll JavaScript -->
+	<script th:src="@{/js/jquery.slimscroll.js}"></script>
+	<!--Wave Effects -->
+	<script th:src="@{/js/waves.js}"></script>
+	<!-- Custom Theme JavaScript -->
+	<script th:src="@{/js/custom.min.js}"></script>
+	<!--Style Switcher -->
+	<script
+		th:src="@{/plugins/bower_components/styleswitcher/jQuery.style.switcher.js}"></script>
+</body>
+
+</html>
