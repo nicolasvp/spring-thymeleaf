@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -111,7 +110,8 @@
 				</div>
 				<div class="white-box">
 					<h3 class="box-title m-b-0" th:text="${title}"></h3>
-					<p class="text-muted m-b-30 font-13">Ingrese los datos solicitados</p>
+					<p class="text-muted m-b-30 font-13">Ingrese los datos
+						solicitados</p>
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
 							<form th:action="@{/store}" th:object="${client}" method="POST">
@@ -134,15 +134,15 @@
 										<input type="text" class="form-control" id="lastname"
 											placeholder="Apellido" th:field="*{lastname}" required=""/>
 									</div>
-								</div>								
+								</div>
 								<div class="form-group">
 									<label for="email">Email</label>
 									<div class="input-group">
 										<div class="input-group-addon">
 											<i class="ti-email"></i>
 										</div>
-										<input type="email" class="form-control"
-											id="email" placeholder="Email" th:field="*{email}" required=""/>
+										<input type="email" class="form-control" id="email"
+											placeholder="Email" th:field="*{email}" required=""/>
 									</div>
 								</div>
 								<div class="form-group">
@@ -152,10 +152,10 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 										<input type="date" class="form-control" id="date"
-											placeholder="Ej: 09-03-1992" th:field="*{createdAt}"/>
+											placeholder="Ej: 09-03-1992" th:field="*{createdAt}" />
 									</div>
-								</div>	
-								<input type="hidden" th:field="*{id}"/>
+								</div>
+								<input type="hidden" th:field="*{id}" />
 								<button type="submit"
 									class="btn btn-success waves-effect waves-light m-r-10">Aceptar</button>
 								<button type="submit"
@@ -191,5 +191,4 @@
 	<script
 		th:src="@{/plugins/bower_components/styleswitcher/jQuery.style.switcher.js}"></script>
 </body>
-
 </html>

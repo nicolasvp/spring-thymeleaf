@@ -27,32 +27,21 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-<<<<<<< HEAD
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>	
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
-=======
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-
->>>>>>> cf68b4ef4d9d53d571bbb3f6da8f3a67b14723c5
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< HEAD
-=======
-		
->>>>>>> cf68b4ef4d9d53d571bbb3f6da8f3a67b14723c5
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-<<<<<<< HEAD
 		</dependency>	
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -63,10 +52,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>			
-=======
-		</dependency>		
->>>>>>> cf68b4ef4d9d53d571bbb3f6da8f3a67b14723c5
+		</dependency>				
 	</dependencies>
 
 	<build>
