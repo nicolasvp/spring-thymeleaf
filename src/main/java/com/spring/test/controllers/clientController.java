@@ -1,5 +1,7 @@
 package com.spring.test.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.spring.test.models.dao.IClientDao;
+import com.spring.test.models.entity.Client;
 
 @Controller
 public class clientController {
@@ -16,10 +19,24 @@ public class clientController {
 	@Qualifier("clientDaoJPA")
 	private IClientDao clientDao;
 	
-	@RequestMapping(value="list", method=RequestMethod.GET)
-	public String list(Model model) {
+	@RequestMapping(value="/index", method=RequestMethod.GET)
+	public String index(Model model) {
 		model.addAttribute("title","Listado de clientes");
 		model.addAttribute("clients",clientDao.findAll());
 		return "index";
+	}
+	
+	@RequestMapping(value="/create",method=RequestMethod.GET)
+	public String create(Map<String, Object> model) {
+		Client client = new Client();
+		model.put("client",client);
+		model.put("title", "Formulario para un cliente");
+		return "create";
+	}
+	
+	@RequestMapping(value="/store",method=RequestMethod.POST)
+	public String store(Client client) {
+		clientDao.save(client);
+		return "redirect:index";
 	}
 }

@@ -44,29 +44,26 @@
 		<!-- Top Navigation -->
 		<nav class="navbar navbar-default navbar-static-top m-b-0">
 			<div class="navbar-header">
-				<a class="navbar-toggle hidden-sm hidden-md hidden-lg "
-					href="#" data-toggle="collapse"
-					data-target=".navbar-collapse" ><i class="ti-menu"></i></a>
+				<a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="#"
+					data-toggle="collapse" data-target=".navbar-collapse"><i
+					class="ti-menu"></i></a>
 				<div class="top-left-part">
-					<a class="logo" href="#" th:href="@{#}">
-						<img th:src="@{/plugins/images/eliteadmin-logo.png}" alt="home" />
-						<span class="hidden-xs">
-							<img th:src="@{/plugins/images/eliteadmin-text.png}" alt="home" />
-						</span>
+					<a class="logo" href="#" th:href="@{#}"> <img
+						th:src="@{/plugins/images/eliteadmin-logo.png}" alt="home" /> <span
+						class="hidden-xs"> <img
+							th:src="@{/plugins/images/eliteadmin-text.png}" alt="home" />
+					</span>
 					</a>
 				</div>
 				<ul class="nav navbar-top-links navbar-right pull-right">
-					<li class="dropdown">
-						<a class="dropdown-toggle waves-effect waves-light"
-							data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
-						 </a>
-					</li>
+					<li class="dropdown"><a
+						class="dropdown-toggle waves-effect waves-light"
+						data-toggle="dropdown" href="#"><i class="icon-envelope"></i>
+					</a></li>
 					<!-- /.dropdown -->
-					<li class="dropdown">
-						<a class="dropdown-toggle waves-effect waves-light"
-							data-toggle="dropdown" href="#"><i class="icon-note"></i>
-						</a>
-					</li>
+					<li class="dropdown"><a
+						class="dropdown-toggle waves-effect waves-light"
+						data-toggle="dropdown" href="#"><i class="icon-note"></i> </a></li>
 					<!-- /.dropdown -->
 					<li class="dropdown"><a class="dropdown-toggle profile-pic"
 						data-toggle="dropdown" href="#"> <img
@@ -76,9 +73,11 @@
 						<ul class="dropdown-menu dropdown-user animated flipInY">
 							<li><a href="#"><i class="ti-user"></i> Mi Perfil</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#"><i class="ti-settings"></i> Configuración de cuenta</a></li>
+							<li><a href="#"><i class="ti-settings"></i>
+									Configuración de cuenta</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#"><i class="fa fa-power-off"></i> Cerrar Sesión</a></li>
+							<li><a href="#"><i class="fa fa-power-off"></i> Cerrar
+									Sesión</a></li>
 						</ul> <!-- /.dropdown-user --></li>
 				</ul>
 			</div>
@@ -100,41 +99,68 @@
 			<div class="container-fluid">
 				<div class="row bg-title">
 					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-						<h4 class="page-title">Inicio</h4>
+						<h4 class="page-title">Crear Cliente</h4>
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
 							<li><a href="#">Dashboard</a></li>
-							<li class="active">Inicio</li>
+							<li class="active">Crear</li>
 						</ol>
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
-				<a class="btn btn-success" th:href="@{/create}"><i class="fa fa-plus"></i> Crear</a>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="white-box">
-							<h3 class="box-title">Lista</h3>
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<td>ID</td>
-										<td>NOMBRE</td>
-										<td>APELLIDO</td>
-										<td>EMAIL</td>
-										<td>FECHA</td>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="client: ${clients}">
-										<td th:text="${client.id}"></td>
-										<td th:text="${client.name}"></td>
-										<td th:text="${client.lastname}"></td>
-										<td th:text="${client.email}"></td>
-										<td th:text="${client.createdAt}"></td>
-									</tr>
-								</tbody>
-							</table>
+				<div class="white-box">
+					<h3 class="box-title m-b-0" th:text="${title}"></h3>
+					<p class="text-muted m-b-30 font-13">Ingrese los datos solicitados</p>
+					<div class="row">
+						<div class="col-sm-12 col-xs-12">
+							<form th:action="@{/store}" th:object="${client}" method="POST">
+								<div class="form-group">
+									<label for="name">Nombre</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="ti-user"></i>
+										</div>
+										<input type="text" class="form-control" id="name"
+											placeholder="Nombre" th:field="*{name}" required=""/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="lastname">Apellido</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="ti-user"></i>
+										</div>
+										<input type="text" class="form-control" id="lastname"
+											placeholder="Apellido" th:field="*{lastname}" required=""/>
+									</div>
+								</div>								
+								<div class="form-group">
+									<label for="email">Email</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="ti-email"></i>
+										</div>
+										<input type="email" class="form-control"
+											id="email" placeholder="Email" th:field="*{email}" required=""/>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="date">Fecha</label>
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-calendar"></i>
+										</div>
+										<input type="date" class="form-control" id="date"
+											placeholder="Ej: 09-03-1992" th:field="*{createdAt}"/>
+									</div>
+								</div>	
+								<input type="hidden" th:field="*{id}"/>
+								<button type="submit"
+									class="btn btn-success waves-effect waves-light m-r-10">Aceptar</button>
+								<button type="submit"
+									class="btn btn-inverse waves-effect waves-light">Cancelar</button>
+							</form>
 						</div>
 					</div>
 				</div>

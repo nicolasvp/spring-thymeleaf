@@ -1,2 +1,2 @@
-INSERT INTO Clients (id,name,lastname,email,created_at) VALUES('1','Nicolas','Vera','nicolas@wedev.cl','2018-03-15');
-INSERT INTO Clients (id,name,lastname,email,created_at) VALUES('2','Rosamel','Fierro','rosamel@wedev.cl','2018-03-15');
+INSERT INTO clients (id,name,lastname,email,created_at) VALUES('1','Nicolas','Vera','nicolas@wedev.cl','2018-03-15');
+INSERT INTO clients (id,name,lastname,email,created_at) VALUES('2','Rosamel','Fierro','rosamel@wedev.cl','2018-03-15');

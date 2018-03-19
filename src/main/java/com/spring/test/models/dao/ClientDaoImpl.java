@@ -24,4 +24,11 @@ public class ClientDaoImpl implements IClientDao {
 		return em.createQuery("from Client").getResultList();
 	}
 
+	@Transactional
+	@Override
+	public void save(Client client) {
+		// TODO Auto-generated method stub
+		em.persist(client);
+	}
+
 }
