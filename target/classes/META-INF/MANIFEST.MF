@@ -1,7 +1,11 @@
 Manifest-Version: 1.0
 Implementation-Title: SpringTest-Thymeleaf
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< HEAD
 Built-By: Dist0
+=======
+Built-By: Websup
+>>>>>>> cf68b4ef4d9d53d571bbb3f6da8f3a67b14723c5
 Implementation-Vendor-Id: com.springtest
 Build-Jdk: 1.8.0_161
 Implementation-URL: http://projects.spring.io/spring-boot/SpringTest-T
