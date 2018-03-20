@@ -2,10 +2,13 @@ package com.spring.test.controllers;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -35,7 +38,12 @@ public class clientController {
 	}
 	
 	@RequestMapping(value="/store",method=RequestMethod.POST)
-	public String store(Client client) {
+	public String store(@Valid Client client, BindingResult result, Model model) {
+		
+		if(result.hasErrors()) {
+			model.addAttribute("title", "Formulario para un cliente");
+			return "create";
+		}
 		clientDao.save(client);
 		return "redirect:index";
 	}

@@ -48,7 +48,7 @@
 					href="#" data-toggle="collapse"
 					data-target=".navbar-collapse" ><i class="ti-menu"></i></a>
 				<div class="top-left-part">
-					<a class="logo" href="#" th:href="@{#}">
+					<a class="logo" href="#" th:href="@{/}">
 						<img th:src="@{/plugins/images/eliteadmin-logo.png}" alt="home" />
 						<span class="hidden-xs">
 							<img th:src="@{/plugins/images/eliteadmin-text.png}" alt="home" />
@@ -104,7 +104,7 @@
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
-							<li><a href="#">Dashboard</a></li>
+							<li><a th:href="@{/}">Dashboard</a></li>
 							<li class="active">Inicio</li>
 						</ol>
 					</div>
@@ -112,6 +112,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
+						<a class="btn btn-success" th:href="@{/create}"><i class="fa fa-plus"></i> Crear</a>
 						<div class="white-box">
 							<h3 class="box-title">Lista</h3>
 							<table class="table table-bordered">

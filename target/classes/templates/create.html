@@ -47,7 +47,7 @@
 					data-toggle="collapse" data-target=".navbar-collapse"><i
 					class="ti-menu"></i></a>
 				<div class="top-left-part">
-					<a class="logo" href="#" th:href="@{#}"> <img
+					<a class="logo" href="#" th:href="@{/}"> <img
 						th:src="@{/plugins/images/eliteadmin-logo.png}" alt="home" /> <span
 						class="hidden-xs"> <img
 							th:src="@{/plugins/images/eliteadmin-text.png}" alt="home" />
@@ -102,7 +102,7 @@
 					</div>
 					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 						<ol class="breadcrumb">
-							<li><a href="#">Dashboard</a></li>
+							<li><a th:href="@{/}">Dashboard</a></li>
 							<li class="active">Crear</li>
 						</ol>
 					</div>
@@ -122,8 +122,10 @@
 											<i class="ti-user"></i>
 										</div>
 										<input type="text" class="form-control" id="name"
-											placeholder="Nombre" th:field="*{name}" required=""/>
+											placeholder="Nombre" th:field="*{name}" />
 									</div>
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></small>
 								</div>
 								<div class="form-group">
 									<label for="lastname">Apellido</label>
@@ -132,8 +134,11 @@
 											<i class="ti-user"></i>
 										</div>
 										<input type="text" class="form-control" id="lastname"
-											placeholder="Apellido" th:field="*{lastname}" required=""/>
+											placeholder="Apellido" th:field="*{lastname}" />
 									</div>
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('lastname')}"
+										th:errors="*{lastname}"></small>
 								</div>
 								<div class="form-group">
 									<label for="email">Email</label>
@@ -141,9 +146,11 @@
 										<div class="input-group-addon">
 											<i class="ti-email"></i>
 										</div>
-										<input type="email" class="form-control" id="email"
-											placeholder="Email" th:field="*{email}" required=""/>
+										<input type="text" class="form-control" id="email"
+											placeholder="Email" th:field="*{email}" />
 									</div>
+									<small class="form-text text-danger"
+										th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
 								</div>
 								<div class="form-group">
 									<label for="date">Fecha</label>
@@ -152,8 +159,12 @@
 											<i class="fa fa-calendar"></i>
 										</div>
 										<input type="date" class="form-control" id="date"
-											placeholder="Ej: 09-03-1992" th:field="*{createdAt}" />
+											placeholder="Ej: 09-03-1992" th:field="*{createdAt}" /> 
 									</div>
+									<small
+											class="form-text text-danger"
+											th:if="${#fields.hasErrors('createdAt')}"
+											th:errors="*{createdAt}"></small>
 								</div>
 								<input type="hidden" th:field="*{id}" />
 								<button type="submit"
