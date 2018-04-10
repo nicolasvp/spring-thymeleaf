@@ -1,13 +1,8 @@
 package com.spring.test.models.dao;
 
-import java.util.List;
-
+import org.springframework.data.repository.CrudRepository;
 import com.spring.test.models.entity.Client;
 
-public interface IClientDao {
+public interface IClientDao extends CrudRepository<Client, Long>{
 
-	public List<Client> findAll();
-	
-	public void save(Client client);
-	
 }
