@@ -5,7 +5,6 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,7 +24,7 @@ public class clientController {
 	@Autowired
 	private IClientService clientService;
 	
-	@RequestMapping(value="/index", method=RequestMethod.GET)
+	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute("title","Listado de clientes");
 		model.addAttribute("clients",clientService.findAll());
@@ -50,7 +49,7 @@ public class clientController {
 		}
 		clientService.save(client);
 		status.setComplete();
-		return "redirect:/index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="/edit/{id}")
@@ -61,7 +60,7 @@ public class clientController {
 			client = clientService.findOne(id);
 		}
 		else {
-			return "redirect:index";
+			return "redirect:/";
 		}
 		
 		model.put("client",client);
@@ -74,6 +73,6 @@ public class clientController {
 		if(id > 0) {
 			clientService.delete(id);
 		}
-		return "redirect:/index";
+		return "redirect:/";
 	}
 }
