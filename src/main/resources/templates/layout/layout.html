@@ -98,6 +98,16 @@
 		<!-- Page Content -->
 		<div id="page-wrapper">
 			<div class="container-fluid">
+				<div th:fragment="status-messages">
+					<div class="alert alert-success dismissable"
+						th:if="${success != null}" th:text="${success}"></div>
+					<div class="alert alert-warning dismissable"
+						th:if="${warning != null}" th:text="${warning}"></div>
+					<div class="alert alert-danger dismissable"
+						th:if="${error != null}" th:text="${error}"></div>
+					<div class="alert alert-info dismissable" th:if="${info != null}"
+						th:text="${info}"></div>
+				</div>
 			</div>
 			<!-- /.container-fluid -->
 			<footer th:fragment="footer" class="footer text-center"> 2018 &copy; Spring boot</footer>
