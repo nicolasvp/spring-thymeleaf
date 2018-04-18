@@ -23,26 +23,25 @@ public class PageRender<T> {
 		totalPages = page.getTotalPages();
 		actualPage = page.getNumber() + 1;
 		
-		int from, to;
-		
+		int desde, hasta;
 		if(totalPages <= elementsPerPage) {
-			from = 1;
-			to = totalPages;
-		}else {
-			if(actualPage <= elementsPerPage / 2) {
-				from = 1;
-				to = elementsPerPage;
-			}else if(actualPage >= totalPages - elementsPerPage / 2) {
-				from = totalPages - elementsPerPage + 1;
-				to = elementsPerPage;
-			}else {
-				from = actualPage - elementsPerPage / 2;
-				to = elementsPerPage;
+			desde = 1;
+			hasta = totalPages;
+		} else {
+			if(actualPage <= elementsPerPage/2) {
+				desde = 1;
+				hasta = elementsPerPage;
+			} else if(actualPage >= totalPages - elementsPerPage/2 ) {
+				desde = totalPages - elementsPerPage + 1;
+				hasta = elementsPerPage;
+			} else {
+				desde = actualPage -elementsPerPage/2;
+				hasta = elementsPerPage;
 			}
 		}
 		
-		for(int i=0; i<to;i++) {
-			pages.add(new PageItem(from + 1,actualPage == from+i));
+		for(int i=0; i < hasta; i++) {
+			pages.add(new PageItem(desde + i, actualPage == desde+i));
 		}
 		
 	}

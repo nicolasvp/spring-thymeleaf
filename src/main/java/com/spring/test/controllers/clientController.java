@@ -1,9 +1,17 @@
 package com.spring.test.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.test.models.entity.Client;
@@ -29,6 +38,9 @@ public class clientController {
 	
 	@Autowired
 	private IClientService clientService;
+	
+	// Debugger
+	private final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index(@RequestParam(name="page", defaultValue="0") int page,Model model) {
@@ -55,11 +67,42 @@ public class clientController {
 	
 	// Guardar y actualizar
 	@RequestMapping(value="/store",method=RequestMethod.POST)
-	public String store(@Valid Client client, BindingResult result, Model model, RedirectAttributes flash, SessionStatus status) {
+	public String store(@Valid Client client, BindingResult result, Model model, @RequestParam("file") MultipartFile photo,RedirectAttributes flash, SessionStatus status) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "Formulario para un cliente");
 			return "create";
+		}
+		
+		if(!photo.isEmpty()) {
+			
+			// Elimina foto
+			if(client.getId() != null && client.getId() > 0 && client.getPhoto() != null && client.getPhoto().length() > 0) {
+				Path rootPath = Paths.get("uploads").resolve(client.getPhoto()).toAbsolutePath();
+				File file = rootPath.toFile();
+				
+				if(file.exists() && file.canRead()) {
+					file.delete();
+				}
+			}
+			
+			String uniqueName = UUID.randomUUID().toString() + "_" + photo.getOriginalFilename();
+			Path rootPath = Paths.get("uploads").resolve(uniqueName);
+			Path rootAbsolutePath = rootPath.toAbsolutePath();
+			
+			// Debugg de las rutas para ver la diferencia
+			log.info("rootPath: "+ rootPath);
+			log.info("rootAbsolutePath: "+ rootAbsolutePath);
+
+			try {
+				Files.copy(photo.getInputStream(),rootAbsolutePath);
+				flash.addFlashAttribute("info","Se ha subido el archivo"+ uniqueName +" correctamente!");
+				client.setPhoto(uniqueName);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		String flashMessage = (client.getId() != null) ? "El registro se ha editado exitosamente!" : "El registro se ha creado exitosamente!";
@@ -91,11 +134,38 @@ public class clientController {
 		return "create";
 	}
 	
+	@RequestMapping(value="/show/{id}")
+	public String show(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash) {
+		Client client = clientService.findOne(id);
+		
+		if(client == null) {
+			flash.addFlashAttribute("error","No se encuentra el registro en la base de datos");
+			return "return:redirect:/";
+		}
+		
+		model.put("client",client);
+		model.put("titulo","Detalle cliente: " + client.getName());
+		
+		return "show";
+	}
+	
+	
 	@RequestMapping(value="/delete/{id}")
 	public String destroy(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		if(id > 0) {
+			Client client = clientService.findOne(id);
+			
 			clientService.delete(id);
 			flash.addFlashAttribute("success", "El registro se ha eliminado exitosamente!");
+			
+			Path rootPath = Paths.get("uploads").resolve(client.getPhoto()).toAbsolutePath();
+			File file = rootPath.toFile();
+			
+			if(file.exists() && file.canRead()) {
+				if(file.delete()) {
+					flash.addFlashAttribute("info","La foto del cliente "+ client.getName() +" correctamente!");
+				}
+			}
 		}
 		return "redirect:/";
 	}

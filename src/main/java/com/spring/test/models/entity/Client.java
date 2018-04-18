@@ -45,6 +45,7 @@ public class Client implements Serializable{
 	@DateTimeFormat(pattern="dd-MM-yyyy")
 	private Date createdAt;
 	
+	private String photo;
 	/* No se está usando por que se agregó el campo Fecha al formulario
 	@PrePersist
 	public void prePersist() {
@@ -80,5 +81,11 @@ public class Client implements Serializable{
 	}
 	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }

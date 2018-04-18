@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Top Navigation -->
+		<nav th:replace="layout/layout :: nav"></nav>
+		<!-- End Top Navigation -->
+		<!-- Left navbar-header -->
+		<div th:replace="layout/layout :: sidebar"
+			class="navbar-default sidebar" role="navigation"></div>
+		<!-- Left navbar-header end -->
+		<div th:replace="layout/layout :: status-messages"></div>
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Inicio</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a th:href="@{/}">Dashboard</a></li>
+							<li><a th:href="@{/}">Inicio</a></li>
+							<li class="active">Ver</li>
+						</ol>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="card bg-light">
+					<div class="card-header" th:text="${titulo}"></div>
+					<div class="card-body row">
+						<img th:if="${#strings.length(client.photo) > 0}" class="img-thumbnail rounded float-left col-md-1"
+							style="max-width: 25%;" th:src="@{'/uploads/' + ${client.photo}}"
+							th:alt="${client.name}" />
+						<ul class="list-group col-md-11">
+							<li class="list-group-item" th:text="${client.name}"></li>
+							<li class="list-group-item" th:text="${client.lastname}"></li>
+							<li class="list-group-item" th:text="${client.email}"></li>
+							<li class="list-group-item" th:text="${client.createdAt}"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer th:replace="layout/layout :: footer"
+				class="footer text-center"></footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<div th:replace="layout/layout :: js"></div>
+</body>
+
+</html>

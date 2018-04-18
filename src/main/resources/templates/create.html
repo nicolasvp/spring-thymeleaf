@@ -35,7 +35,7 @@
 						solicitados</p>
 					<div class="row">
 						<div class="col-sm-12 col-xs-12">
-							<form th:action="@{/store}" th:object="${client}" method="POST">
+							<form th:action="@{/store}" th:object="${client}" method="POST" enctype="multipart/form-data">
 								<div class="form-group">
 									<label for="name">Nombre</label>
 									<div class="input-group">
@@ -86,6 +86,12 @@
 											class="form-text text-danger"
 											th:if="${#fields.hasErrors('createdAt')}"
 											th:errors="*{createdAt}"></small>
+								</div>
+								<div class="form-group row">
+								<label for="file" class="col-md-12 col-form-label">Foto</label>
+								<div class="col-md-4">
+									<input type="file" name="file" id="file" class="form-control" />
+								</div>
 								</div>
 								<button type="submit"
 									class="btn btn-success waves-effect waves-light m-r-10">Aceptar</button>
