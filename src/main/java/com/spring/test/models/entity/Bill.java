@@ -1,16 +1,20 @@
 package com.spring.test.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,6 +42,14 @@ public class Bill implements Serializable{
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Client client;
 	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="bill_id")
+	private List<ItemBill> items;
+	
+	public Bill() {
+		this.items = new ArrayList<ItemBill>();
+	}
+
 	// Esta fecha se genera automaticamente y no se ingresa por formulario
 	@PrePersist
 	public void prePersist() {
@@ -82,5 +94,29 @@ public class Bill implements Serializable{
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	public List<ItemBill> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemBill> items) {
+		this.items = items;
+	}
+	
+	public void addItemBill(ItemBill item) {
+		this.items.add(item);
+	}
+	
+	public Double getTotal() {
+		Double total = 0.0;
+		
+		int size = items.size();
+		
+		for(int i=0;i<size;i++) {
+			total += items.get(i).calculateImport();
+		}
+		
+		return total;
 	}
 }
