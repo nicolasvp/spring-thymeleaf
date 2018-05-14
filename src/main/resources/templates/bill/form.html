@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Top Navigation -->
+		<nav th:replace="layout/layout :: nav"></nav>
+		<!-- End Top Navigation -->
+		<!-- Left navbar-header -->
+		<div th:replace="layout/layout :: sidebar"
+			class="navbar-default sidebar" role="navigation"></div>
+		<!-- Left navbar-header end -->
+		<div th:replace="layout/layout :: status-messages"></div>
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Inicio</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a th:href="@{/}">Dashboard</a></li>
+							<li><a th:href="@{/}">Inicio</a></li>
+							<li class="active">Crear</li>
+						</ol>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="card bg-light">
+					<div class="card-header" th:text="${title}"></div>
+					<div class="card-body">
+						<div class="row">
+							<form th:action="@{/bill/form/}" th:object="${bill}" method="post">
+								<div class="form-group col-md-12">
+									<label class="form-label" th:text="'Cliente'"></label>
+									<input th:value="${bill.client.name} + ' ' + ${bill.client.lastname}" disabled='disabled' />
+								</div>
+								<div class="form-group col-md-12">
+									<label class="form-label" th:text="'Descripción'"></label>
+									<input type="text" th:field="*{description}" class="form-control"/>
+								</div>
+								<div class="form-group col-md-12">
+									<label class="form-label" th:text="'Observación'"></label>
+									<textarea th:field="*{observation}" class="form-control"></textarea>
+								</div>
+								<div class="form-group col-md-12">
+									<button type="submit" th:text="'Crear'" class="btn btn-success"></button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer th:replace="layout/layout :: footer"
+				class="footer text-center"></footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<div th:replace="layout/layout :: js"></div>
+</body>
+
+</html>
