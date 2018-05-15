@@ -34,38 +34,47 @@
 					</div>
 					<!-- /.col-lg-12 -->
 				</div>
-				<div class="card bg-light">
-					<div class="card-header" th:text="${titulo}"></div>
-					<div class="card-body row">
-						<img th:if="${#strings.length(client.photo) > 0}"
-							class="img-thumbnail rounded float-left col-md-1"
-							style="max-width: 25%;" th:src="@{'/uploads/' + ${client.photo}}"
-							th:alt="${client.name}" />
-						<ul class="list-group col-md-11">
-							<li class="list-group-item" th:text="${client.name}"></li>
-							<li class="list-group-item" th:text="${client.lastname}"></li>
-							<li class="list-group-item" th:text="${client.email}"></li>
-							<li class="list-group-item" th:text="${client.createdAt}"></li>
-						</ul>
-						<div th:if="${#lists.isEmpty(client.bills)}" class="alert alert-info" th:text="'No hay facturas asignadas para el cliente ' + ${client.name} + ${client.lastname}"></div>
-						<table th:if="${not #lists.isEmpty(client.bills)}" class="table table-bordered">
-							<thead class="thead-inverse">
-								<tr>
-									<th>Folio</th>
-									<th>Descripcion</th>
-									<th>Fecha</th>
-									<th>Total</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="bill: ${client.bills}">
-									<td th:text="${bill.id}"></td>
-									<td th:text="${bill.description}"></td>
-									<td th:text="${bill.createdAt}"></td>
-									<td th:text="${bill.total}"></td>
-								</tr>
-							</tbody>
-						</table>
+				<div class="panel panel-default">
+					<div class="panel-heading" th:text="${titulo}">
+					</div>
+					<div class="panel-wrapper collapse in">
+						<div class="panel-body">
+							<div class="row">
+								<img th:if="${#strings.length(client.photo) > 0}"
+									class="img-thumbnail rounded float-left col-md-1"
+									style="max-width: 25%;"
+									th:src="@{'/uploads/' + ${client.photo}}"
+									th:alt="${client.name}" />
+								<ul class="list-group col-md-11">
+									<li class="list-group-item" th:text="${client.name}"></li>
+									<li class="list-group-item" th:text="${client.lastname}"></li>
+									<li class="list-group-item" th:text="${client.email}"></li>
+									<li class="list-group-item" th:text="${client.createdAt}"></li>
+								</ul>
+								<div th:if="${#lists.isEmpty(client.bills)}"
+									class="alert alert-info col-md-12"
+									th:text="'No hay facturas asignadas para el cliente ' + ${client.name} + ${client.lastname}"></div>
+								<table th:if="${not #lists.isEmpty(client.bills)}"
+									class="table table-bordered col-md-12">
+									<thead class="thead-inverse">
+										<tr>
+											<th>Folio</th>
+											<th>Descripcion</th>
+											<th>Fecha</th>
+											<th>Total</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="bill: ${client.bills}">
+											<td th:text="${bill.id}"></td>
+											<td th:text="${bill.description}"></td>
+											<td th:text="${bill.createdAt}"></td>
+											<td th:text="${bill.total}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
