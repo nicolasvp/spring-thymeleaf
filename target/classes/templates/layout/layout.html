@@ -26,13 +26,8 @@
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 <!-- color CSS you can use different color css from css/colors folder -->
 <link th:href="@{/css/colors/blue.css}" id="theme" rel="stylesheet" />
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<script src="http://www.w3schools.com/lib/w3data.js"></script>
+<link th:href="@{/css/jquery-ui.min.css}"
+	rel="stylesheet" />
 </head>
 
 <body>
@@ -70,7 +65,7 @@
 					<!-- /.dropdown -->
 					<li class="dropdown"><a class="dropdown-toggle profile-pic"
 						data-toggle="dropdown" href="#"> <img
-							src="../plugins/images/users/varun.jpg" alt="user-img" width="36"
+							src="/../plugins/images/users/varun.jpg" alt="user-img" width="36"
 							class="img-circle" /><b class="hidden-xs">Nicolás</b>
 					</a>
 						<ul class="dropdown-menu dropdown-user animated flipInY">
@@ -133,6 +128,7 @@
 		<script th:src="@{/js/custom.min.js}"></script>
 		<!--Style Switcher -->
 		<script th:src="@{/plugins/bower_components/styleswitcher/jQuery.style.switcher.js}"></script>
+		<script th:src="@{/js/jquery-ui.min.js}"></script>
 	</div>
 </body>
 

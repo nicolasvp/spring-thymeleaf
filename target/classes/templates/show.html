@@ -35,6 +35,8 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<div class="panel panel-default">
+					<a class="btn btn-info pull-right" style="margin: 10px;" th:href="@{'/bill/form/' + ${client.id}}"
+					th:text="'Crear Factura'"></a>
 					<div class="panel-heading" th:text="${titulo}">
 					</div>
 					<div class="panel-wrapper collapse in">

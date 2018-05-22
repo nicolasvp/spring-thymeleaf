@@ -46,6 +46,7 @@
 										<th>APELLIDO</th>
 										<th>EMAIL</th>
 										<th>FECHA</th>
+										<th>CREAR FACTURA</th>
 										<th>Accion</th>
 									</tr>
 								</thead>
@@ -56,6 +57,7 @@
 										<td th:text="${client.lastname}"></td>
 										<td th:text="${client.email}"></td>
 										<td th:text="${client.createdAt}"></td>
+										<td><a class="btn btn-info" th:href="@{'bill/form/' + ${client.id}}" th:text="'Crear Factura'"></a></td>
 										<td>
 										<a class="btn btn-info" th:href="@{/show/} + ${client.id}" th:text="Ver"></a>
 										<a class="btn btn-warning" th:href="@{/edit/} + ${client.id}" th:text="'Editar'"></a>
