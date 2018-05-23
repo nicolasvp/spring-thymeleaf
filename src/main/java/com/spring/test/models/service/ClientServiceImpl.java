@@ -9,13 +9,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.test.models.dao.IClientDao;
+import com.spring.test.models.dao.IProductDao;
 import com.spring.test.models.entity.Client;
+import com.spring.test.models.entity.Product;
 
 @Service
 public class ClientServiceImpl implements IClientService{
 
 	@Autowired
 	private IClientDao clientDao;
+	
+	@Autowired
+	private IProductDao productDao;
+	
 	@Override
 	@Transactional(readOnly=true)
 	public List<Client> findAll() {
@@ -44,6 +50,12 @@ public class ClientServiceImpl implements IClientService{
 	public Page<Client> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return clientDao.findAll(pageable);
+	}
+
+	@Override
+	public List<Product> findByName(String term) {
+		// TODO Auto-generated method stub
+		return productDao.findByNameLikeIgnoreCase("%"+term+"%");
 	}
 
 }

@@ -35,30 +35,38 @@
 					<!-- /.col-lg-12 -->
 				</div>
 				<div class="panel panel-default">
-					<a class="btn btn-primary pull-right" style="margin: 10px;" th:href="@{'/show/' + ${bill.client.id}}"
-					th:text="'Volver'"></a>
-					<div class="panel-heading" th:text="${title}">
-					</div>
+					<a class="btn btn-primary pull-right" style="margin: 10px;"
+						th:href="@{'/show/' + ${bill.client.id}}" th:text="'Volver'"></a>
+					<div class="panel-heading" th:text="${title}"></div>
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 							<div class="row">
-								<form th:action="@{/bill/form/}" th:object="${bill}" method="post">
-								<div class="form-group col-md-12">
-									<label class="form-label" th:text="'Cliente'"></label>
-									<input class="form-control" type="text" th:value="${bill.client.name} + ' ' + ${bill.client.lastname}" readonly="readonly" />
-								</div>
-								<div class="form-group col-md-12">
-									<label class="form-label" th:text="'Descripción'"></label>
-									<input type="text" th:field="*{description}" class="form-control"/>
-								</div>
-								<div class="form-group col-md-12">
-									<label class="form-label" th:text="'Observación'"></label>
-									<textarea th:field="*{observation}" class="form-control"></textarea>
-								</div>
-								<div class="form-group col-md-12">
-									<button type="submit" th:text="'Crear'" class="btn btn-success"></button>
-								</div>
-							</form>
+								<form th:action="@{/bill/form/}" th:object="${bill}"
+									method="post">
+									<div class="form-group col-md-12">
+										<label class="form-label" th:text="'Cliente'"></label> <input
+											class="form-control" type="text"
+											th:value="${bill.client.name} + ' ' + ${bill.client.lastname}"
+											readonly="readonly" />
+									</div>
+									<div class="form-group col-md-12">
+										<label class="form-label" th:text="'Descripción'"></label> <input
+											type="text" th:field="*{description}" class="form-control" />
+									</div>
+									<div class="form-group col-md-12">
+										<label class="form-label" th:text="'Observación'"></label>
+										<textarea th:field="*{observation}" class="form-control"></textarea>
+									</div>
+									<div class="form-group col-md-12">
+										<label class="form-label" th:text="'Buscar producto'"></label>
+										<input type="text" name="bucar_producto" id="buscar_producto"
+											class="form-control"></input>
+									</div>
+									<div class="form-group col-md-12">
+										<button type="submit" th:text="'Crear'"
+											class="btn btn-success"></button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -67,11 +75,13 @@
 			<!-- /.container-fluid -->
 			<footer th:replace="layout/layout :: footer"
 				class="footer text-center"></footer>
+		
 		</div>
 		<!-- /#page-wrapper -->
 	</div>
 	<!-- /#wrapper -->
 	<div th:replace="layout/layout :: js"></div>
+	<script th:replace="bill/autocomplete :: javascript"></script>	
 </body>
 
 </html>
