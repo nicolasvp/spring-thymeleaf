@@ -8,8 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.test.models.dao.IBillDao;
 import com.spring.test.models.dao.IClientDao;
 import com.spring.test.models.dao.IProductDao;
+import com.spring.test.models.entity.Bill;
 import com.spring.test.models.entity.Client;
 import com.spring.test.models.entity.Product;
 
@@ -21,6 +23,9 @@ public class ClientServiceImpl implements IClientService{
 	
 	@Autowired
 	private IProductDao productDao;
+	
+	@Autowired
+	private IBillDao billDao;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -47,15 +52,29 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Client> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return clientDao.findAll(pageable);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Product> findByName(String term) {
 		// TODO Auto-generated method stub
 		return productDao.findByNameLikeIgnoreCase("%"+term+"%");
+	}
+
+	@Override
+	@Transactional
+	public void saveBill(Bill bill) {
+		// TODO Auto-generated method stub
+		billDao.save(bill);
+	}
+
+	@Override
+	public Product findProductById(Long id) {
+		return productDao.findOne(id);
 	}
 
 }

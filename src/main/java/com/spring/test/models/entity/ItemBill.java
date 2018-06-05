@@ -44,6 +44,15 @@ public class ItemBill implements Serializable {
 		this.quantity = quantity;
 	}
 
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
 	public Double calculateImport() {
 		return quantity.doubleValue() * product.getPrice();
 	}

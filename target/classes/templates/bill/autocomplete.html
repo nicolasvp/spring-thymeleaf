@@ -42,11 +42,17 @@
 				return false;
 			}
 		});
+		
+		$("form").submit(function(){
+			$("#billItemsTemplate").remove();
+			return;
+		})
 	});
 	
 	var itemsHelper = {
 		calculateImport: function(id, price, quantity){
 			$("#totalImport_" + id).html(parseInt(price) * parseInt(quantity));
+			this.calculateTotal();
 		},
 		hasProduct: function(id){
 			var result = false;
@@ -63,6 +69,17 @@
 			var quantity = $("#quantity_" + id).val() ? parseInt($("#quantity_" + id).val()) : 0;
 			$("#quantity_" + id).val(++quantity);
 			this.calculateImport(id, price, quantity);
+		},
+		deleteBillLine: function(id){
+			$("#row_" + id).remove();
+			this.calculateTotal();
+		},
+		calculateTotal: function(){
+			var total = 0;
+			$('span[id^=totalImport_]').each(function(){
+				total += parseInt($(this).html());
+			});
+			$("#total").html("$" + total);
 		}
 	};
 </script>
