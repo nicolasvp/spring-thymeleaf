@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head">
+</head>
+
+<body>
+	<!-- Preloader -->
+	<div class="preloader">
+		<div class="cssload-speeding-wheel"></div>
+	</div>
+	<div id="wrapper">
+		<!-- Top Navigation -->
+		<nav th:replace="layout/layout :: nav"></nav>
+		<!-- End Top Navigation -->
+		<!-- Left navbar-header -->
+		<div th:replace="layout/layout :: sidebar"
+			class="navbar-default sidebar" role="navigation"></div>
+		<!-- Left navbar-header end -->
+		<div th:replace="layout/layout :: status-messages"></div>
+		<!-- Page Content -->
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div class="row bg-title">
+					<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+						<h4 class="page-title">Inicio</h4>
+					</div>
+					<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+						<ol class="breadcrumb">
+							<li><a th:href="@{/}">Dashboard</a></li>
+							<li><a th:href="@{/}">Inicio</a></li>
+							<li class="active">Ver</li>
+						</ol>
+					</div>
+					<!-- /.col-lg-12 -->
+				</div>
+				<div class="panel panel-default">
+					<a class="btn btn-info pull-right" style="margin: 10px;" th:href="@{'/show/' + ${bill.client.id}}"
+					th:text="'Volver'"></a>
+					<div class="panel-heading" th:text="${title}">
+					</div>
+					<div class="panel-wrapper collapse in">
+						<div class="panel-body">
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-info" th:text="'Datos del cliente'"></li>
+								<li class="list-group-item" th:text="'Nombre: ' + ${bill.client}"></li>
+								<li class="list-group-item" th:text="'Email: ' + ${bill.client.email}"></li>
+							</ul>
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-success" th:text="'Datos de la factura'"></li>
+								<li class="list-group-item" th:text="'Folio: ' + ${bill.id}"></li>
+								<li class="list-group-item" th:text="'Descripción: ' + ${bill.description}"></li>
+								<li class="list-group-item" th:text="'Fecha: ' + ${bill.createdAt}"></li>
+							</ul>
+							<div class="alert alert-info" th:if="${#lists.isEmpty(bill.items)}" th:text="'No hay lineas para la factura' + ${bill.description}"></div>
+							<table th:if="${not #lists.isEmpty(bill.items)}" class="table table-striped table-hover table-bordered">
+								<thead>
+									<tr>
+										<th>Producto</th>
+										<th>Precio</th>
+										<th>Cantidad</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="line: ${bill.items}">
+										<td th:text="${line.product.name}"></td>
+										<td th:text="${line.product.price}"></td>
+										<td th:text="${line.quantity}"></td>
+										<td th:text="${line.calculateImport()}"></td>
+									</tr>
+								</tbody>
+							</table>
+							<h5 class="pull-right">Gran total<span th:text="${bill.total}" class="badge"></span></h5>
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									Observaciones
+								</div>
+								<div class="panel-body">
+									<p class="card-text" th:if="${not #strings.isEmpty(bill.observation)}" th:text="${bill.observation}"></p>
+									<h4 class="card-title" th:if="${#strings.isEmpty(bill.observation)}" th:text="'No tiene observaciones'"></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /.container-fluid -->
+			<footer th:replace="layout/layout :: footer"
+				class="footer text-center"></footer>
+		</div>
+		<!-- /#page-wrapper -->
+	</div>
+	<!-- /#wrapper -->
+	<div th:replace="layout/layout :: js"></div>
+</body>
+
+</html>

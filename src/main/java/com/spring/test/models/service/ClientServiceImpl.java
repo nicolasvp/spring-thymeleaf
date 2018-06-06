@@ -73,8 +73,21 @@ public class ClientServiceImpl implements IClientService{
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Product findProductById(Long id) {
 		return productDao.findOne(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Bill findBillById(Long id) {
+		return billDao.findOne(id);
+	}
+
+	@Override
+	@Transactional
+	public void deleteBill(Long id) {
+		billDao.delete(id);
 	}
 
 }

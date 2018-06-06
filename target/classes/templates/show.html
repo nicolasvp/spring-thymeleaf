@@ -64,6 +64,8 @@
 											<th>Descripcion</th>
 											<th>Fecha</th>
 											<th>Total</th>
+											<th>Ver</th>
+											<th>Eliminar</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -72,6 +74,8 @@
 											<td th:text="${bill.description}"></td>
 											<td th:text="${bill.createdAt}"></td>
 											<td th:text="${bill.total}"></td>
+											<td><a class="btn btn-info" th:text="'Ver detalle'" th:href="@{'/bill/show/' + ${bill.id}}"></a></td>
+											<td><a class="btn btn-danger" th:text="'Eliminar'" th:href="@{'/bill/delete/' + ${bill.id}}" onClick="return confirm('¿Está seguro que desea eliminar esta factura?')"></a></td>
 										</tr>
 									</tbody>
 								</table>

@@ -27,4 +27,8 @@ public interface IClientService {
 	public void saveBill(Bill bill);
 	
 	public Product findProductById(Long id);
+	
+	public Bill findBillById(Long id);
+	
+	public void deleteBill(Long id);
 }

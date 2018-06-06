@@ -105,4 +105,10 @@ public class Client implements Serializable{
 	public void addBill(Bill bill) {
 		bills.add(bill);
 	}
+
+	@Override
+	public String toString() {
+		return name + " " + lastname;
+	}
+	
 }
