@@ -35,7 +35,7 @@ public class billController {
 	
 	@GetMapping("/show/{id}")
 	public String show(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash) {
-		Bill bill = clientService.findBillById(id);
+		Bill bill = clientService.fetchByIdWithClientWithBillItemWithProduct(id);	//clientService.findBillById(id);
 		
 		if(bill == null) {
 			flash.addFlashAttribute("error","No se encuentra el registro en la base de datos");

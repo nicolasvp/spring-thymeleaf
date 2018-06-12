@@ -31,4 +31,6 @@ public interface IClientService {
 	public Bill findBillById(Long id);
 	
 	public void deleteBill(Long id);
+	
+	public Bill fetchByIdWithClientWithBillItemWithProduct(Long id);
 }

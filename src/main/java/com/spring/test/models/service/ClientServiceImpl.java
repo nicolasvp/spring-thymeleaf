@@ -90,4 +90,11 @@ public class ClientServiceImpl implements IClientService{
 		billDao.delete(id);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Bill fetchByIdWithClientWithBillItemWithProduct(Long id) {
+		// TODO Auto-generated method stub
+		return billDao.fetchByIdWithClientWithBillItemWithProduct(id);
+	}
+
 }
