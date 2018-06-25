@@ -57,7 +57,7 @@ public class clientController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String index(@RequestParam(name="page", defaultValue="0") int page,Model model) {
 		
-		Pageable pageRequest = new PageRequest(page,5);
+		Pageable pageRequest = PageRequest.of(page,5);
 		
 		Page<Client> clients = clientService.findAll(pageRequest);
 		

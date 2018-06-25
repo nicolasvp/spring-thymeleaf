@@ -4,8 +4,7 @@ Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: Dist0
 Implementation-Vendor-Id: com.springtest
 Build-Jdk: 1.8.0_171
-Implementation-URL: http://projects.spring.io/spring-boot/SpringTest-T
- hymeleaf/
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/SpringTest-Thymeleaf
 Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
 
