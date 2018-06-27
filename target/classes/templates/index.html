@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="layout/layout :: head">
 </head>
@@ -35,7 +35,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-12">
-						<a class="btn btn-success" th:href="@{/create}"><i class="fa fa-plus"></i> Crear</a>
+						<a sec:authorize="hasRole('admin')" class="btn btn-success" th:href="@{/create}"><i class="fa fa-plus"></i> Crear</a>
 						<div class="white-box">
 							<h3 class="box-title">Lista</h3>
 							<table class="table table-bordered">
@@ -46,7 +46,7 @@
 										<th>APELLIDO</th>
 										<th>EMAIL</th>
 										<th>FECHA</th>
-										<th>CREAR FACTURA</th>
+										<th sec:authorize="hasRole('admin')">CREAR FACTURA</th>
 										<th>Accion</th>
 									</tr>
 								</thead>
@@ -57,11 +57,11 @@
 										<td th:text="${client.lastname}"></td>
 										<td th:text="${client.email}"></td>
 										<td th:text="${client.createdAt}"></td>
-										<td><a class="btn btn-info" th:href="@{'bill/form/' + ${client.id}}" th:text="'Crear Factura'"></a></td>
+										<td sec:authorize="hasRole('admin')"><a class="btn btn-info" th:href="@{'bill/form/' + ${client.id}}" th:text="'Crear Factura'"></a></td>
 										<td>
 										<a class="btn btn-info" th:href="@{/show/} + ${client.id}" th:text="Ver"></a>
-										<a class="btn btn-warning" th:href="@{/edit/} + ${client.id}" th:text="'Editar'"></a>
-										<a class="btn btn-danger" th:href="@{/delete/} + ${client.id}" th:text="'Eliminar'" onclick="return confirm('¿Está seguro de eliminar este registro?')"></a>
+										<a sec:authorize="hasRole('admin')" class="btn btn-warning" th:href="@{/edit/} + ${client.id}" th:text="'Editar'"></a>
+										<a sec:authorize="hasRole('admin')" class="btn btn-danger" th:href="@{/delete/} + ${client.id}" th:text="'Eliminar'" onclick="return confirm('¿Está seguro de eliminar este registro?')"></a>
 										</td>
 									</tr>
 								</tbody>

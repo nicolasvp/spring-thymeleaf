@@ -76,8 +76,7 @@
 										<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 									</form>
 							</li>
-						</ul> <!-- /.dropdown-user -->
-						</li>
+						</ul> <!-- /.dropdown-user --></li>
 				</ul>
 			</div>
 			<!-- /.navbar-header -->
@@ -107,6 +106,14 @@
 					<div class="alert alert-info dismissable" th:if="${info != null}"
 						th:text="${info}"></div>
 				</div>
+		        <div class="error-box">
+		            <div class="error-body text-center">
+		                <h1>403</h1>
+		                <h3 class="text-uppercase">Forbidden Error</h3>
+		                <p class="text-muted m-t-30 m-b-30 text-uppercase">No tienes permisos para acceder a este contenido.</p>
+		                <a th:href="@{/}" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Volver</a> </div>
+		            <footer class="footer text-center">2017 © Elite Admin.</footer>
+		        </div>				
 			</div>
 			<!-- /.container-fluid -->
 			<footer th:fragment="footer" class="footer text-center">
