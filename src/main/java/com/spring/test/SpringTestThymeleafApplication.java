@@ -4,12 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.spring.test.models.service.IUploadFileService;
 
 @SpringBootApplication
 public class SpringTestThymeleafApplication implements CommandLineRunner{
 
+	@Autowired
+	BCryptPasswordEncoder passwordEncoder;
+	
 	@Autowired
 	IUploadFileService uploadFileService;
 	
@@ -21,5 +25,12 @@ public class SpringTestThymeleafApplication implements CommandLineRunner{
 	public void run(String... arg0) throws Exception {
 		uploadFileService.deleteAll();
 		uploadFileService.init();
+		
+		String password = "123123";
+		
+		for(int i=0;i<2;i++) {
+			String bcryptPassword = passwordEncoder.encode(password);
+			System.out.println(bcryptPassword);
+		}
 	}
 }

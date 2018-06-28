@@ -13,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -41,6 +43,7 @@ public class clientController {
 	@Autowired
 	private IUploadFileService uploadFileService;
 	
+	@PreAuthorize("hasRole('user')")
 	@GetMapping(value="/uploads/{filename:.+}")
 	public ResponseEntity<Resource> showPhoto(@PathVariable String filename){
 		
@@ -69,6 +72,7 @@ public class clientController {
 		return "index";
 	}
 	
+	@PreAuthorize("hasRole('admin')")
 	@RequestMapping(value="/create",method=RequestMethod.GET)
 	public String create(Map<String, Object> model) {
 		Client client = new Client();
@@ -78,6 +82,7 @@ public class clientController {
 	}
 	
 	// Guardar y actualizar
+	@PreAuthorize("hasRole('admin')")
 	@RequestMapping(value="/store",method=RequestMethod.POST)
 	public String store(@Valid Client client, BindingResult result, Model model, @RequestParam("file") MultipartFile photo,RedirectAttributes flash, SessionStatus status) {
 		
@@ -113,6 +118,7 @@ public class clientController {
 		return "redirect:/";
 	}
 	
+	@PreAuthorize("hasRole('admin')")
 	@RequestMapping(value="/edit/{id}")
 	public String edit(@PathVariable(value="id") Long id,Map<String, Object> model, RedirectAttributes flash) {
 		Client client = null;
@@ -134,6 +140,7 @@ public class clientController {
 		return "create";
 	}
 	
+	@PreAuthorize("hasRole('user')")
 	@RequestMapping(value="/show/{id}")
 	public String show(@PathVariable(value="id") Long id, Map<String, Object> model, RedirectAttributes flash) {
 		Client client = clientService.findOne(id);
@@ -149,7 +156,7 @@ public class clientController {
 		return "show";
 	}
 	
-	
+	@PreAuthorize("hasRole('admin')")
 	@RequestMapping(value="/delete/{id}")
 	public String destroy(@PathVariable(value="id") Long id, RedirectAttributes flash) {
 		
